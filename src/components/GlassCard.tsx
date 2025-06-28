@@ -19,18 +19,14 @@ export const GlassCard: React.FC<GlassCardProps> = ({
   return (
     <motion.div
       className={`
-        ${gradient 
-          ? 'bg-gradient-to-br from-gray-900/40 to-black/20' 
-          : 'bg-gray-900/80'
-        }
-        backdrop-blur-xl border border-gray-800 
-        rounded-2xl shadow-2xl
-        ${hover ? 'hover:shadow-3xl hover:scale-[1.02] transition-all duration-300' : ''}
+        bg-white border border-gray-200 
+        rounded-xl shadow-sm
+        ${hover ? 'hover:shadow-md hover:scale-[1.01] transition-all duration-300' : ''}
         ${onClick ? 'cursor-pointer' : ''}
         ${className}
       `}
-      whileHover={hover ? { y: -2 } : {}}
-      whileTap={onClick ? { scale: 0.98 } : {}}
+      whileHover={hover ? { y: -1 } : {}}
+      whileTap={onClick ? { scale: 0.99 } : {}}
       onClick={onClick}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -66,15 +62,15 @@ export const StatCard: React.FC<{
   };
 
   const trendColors = {
-    up: 'text-green-400',
-    down: 'text-red-400',
-    neutral: 'text-gray-400'
+    up: 'text-green-600',
+    down: 'text-red-600',
+    neutral: 'text-gray-500'
   };
 
   return (
     <GlassCard className="p-6">
       <div className="flex items-center justify-between mb-4">
-        <div className={`w-12 h-12 bg-gradient-to-br ${colorClasses[color]} rounded-xl flex items-center justify-center shadow-lg`}>
+        <div className={`w-12 h-12 bg-gradient-to-br ${colorClasses[color]} rounded-xl flex items-center justify-center shadow-sm`}>
           {icon}
         </div>
         {trend && trendValue && (
@@ -86,16 +82,16 @@ export const StatCard: React.FC<{
       
       <div className="space-y-1">
         <motion.p 
-          className="text-3xl font-bold text-white"
+          className="text-3xl font-bold text-gray-900"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
         >
           {value}
         </motion.p>
-        <p className="text-sm font-medium text-gray-300">{title}</p>
+        <p className="text-sm font-medium text-gray-600">{title}</p>
         {subtitle && (
-          <p className="text-xs text-gray-400">{subtitle}</p>
+          <p className="text-xs text-gray-500">{subtitle}</p>
         )}
       </div>
     </GlassCard>

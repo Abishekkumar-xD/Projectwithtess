@@ -22,15 +22,15 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('dark'); // Changed default to dark
+  const [theme, setTheme] = useState<Theme>('light'); // Changed default to light
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as Theme;
     if (savedTheme) {
       setTheme(savedTheme);
     } else {
-      // Default to dark theme for Project W
-      setTheme('dark');
+      // Default to light theme for clean aesthetic
+      setTheme('light');
     }
   }, []);
 

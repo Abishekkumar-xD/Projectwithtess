@@ -19,7 +19,6 @@ import {
 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { TessaAvatar, TessaSidebar } from './TessaAvatar';
-import { GlassCard } from './GlassCard';
 
 const Layout: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -42,37 +41,29 @@ const Layout: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black transition-all duration-500">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-      </div>
-
+    <div className="min-h-screen bg-gray-50 transition-all duration-500">
       {/* Header */}
-      <header className="sticky top-0 z-40 backdrop-blur-xl bg-black/80 border-b border-gray-800">
+      <header className="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/dashboard" className="flex items-center gap-3 group">
               <motion.div 
-                className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.05, rotate: 5 }}
+                className="w-10 h-10 bg-black rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Sparkles className="w-6 h-6 text-white" />
+                <span className="text-white font-bold text-lg">W</span>
               </motion.div>
               <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                <h1 className="text-xl font-semibold text-gray-900">
                   Project W
                 </h1>
-                <p className="text-xs text-gray-400">AI Sales Auditor</p>
               </div>
             </Link>
 
             {/* Navigation */}
-            <nav className="hidden md:flex items-center gap-2">
+            <nav className="hidden md:flex items-center gap-1">
               {navigation.map((item) => {
                 const Icon = item.icon;
                 const isActive = location.pathname === item.href;
@@ -83,10 +74,10 @@ const Layout: React.FC = () => {
                     className="relative group"
                   >
                     <motion.div
-                      className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                         isActive
-                          ? 'bg-gray-800/60 text-blue-400 shadow-lg'
-                          : 'text-gray-400 hover:bg-gray-800/40 hover:text-gray-200'
+                          ? 'bg-black text-white shadow-sm'
+                          : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                       }`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -94,13 +85,6 @@ const Layout: React.FC = () => {
                       <Icon className="w-4 h-4" />
                       {item.name}
                     </motion.div>
-                    {isActive && (
-                      <motion.div
-                        className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-500 rounded-full"
-                        layoutId="activeTab"
-                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                      />
-                    )}
                   </Link>
                 );
               })}
@@ -111,7 +95,7 @@ const Layout: React.FC = () => {
               {/* Talk to Tessa */}
               <motion.button
                 onClick={() => setShowTessaSidebar(true)}
-                className="p-2 text-gray-400 hover:bg-gray-800/40 hover:text-purple-400 rounded-xl transition-all"
+                className="p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 title="Talk to Tessa"
@@ -123,7 +107,7 @@ const Layout: React.FC = () => {
               <div className="relative">
                 <motion.button
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="p-2 text-gray-400 hover:bg-gray-800/40 hover:text-blue-400 rounded-xl transition-all"
+                  className="p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-all"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -139,20 +123,20 @@ const Layout: React.FC = () => {
                       initial={{ opacity: 0, scale: 0.95, y: -10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                      className="absolute right-0 mt-2 w-80 bg-black/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-800 py-2 z-50"
+                      className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50"
                     >
-                      <div className="px-4 py-3 border-b border-gray-800">
-                        <h3 className="font-semibold text-white">Notifications</h3>
+                      <div className="px-4 py-3 border-b border-gray-100">
+                        <h3 className="font-semibold text-gray-900">Notifications</h3>
                       </div>
                       <div className="max-h-64 overflow-y-auto">
                         {notifications.map((notification) => (
                           <motion.div
                             key={notification.id}
-                            className="px-4 py-3 hover:bg-gray-800/50 transition-colors"
+                            className="px-4 py-3 hover:bg-gray-50 transition-colors"
                             whileHover={{ x: 4 }}
                           >
-                            <p className="text-sm text-gray-200">{notification.message}</p>
-                            <p className="text-xs text-gray-400 mt-1">{notification.time}</p>
+                            <p className="text-sm text-gray-900">{notification.message}</p>
+                            <p className="text-xs text-gray-500 mt-1">{notification.time}</p>
                           </motion.div>
                         ))}
                       </div>
@@ -164,30 +148,30 @@ const Layout: React.FC = () => {
               {/* Theme Toggle */}
               <motion.button
                 onClick={toggleTheme}
-                className="p-2 text-gray-400 hover:bg-gray-800/40 hover:text-yellow-400 rounded-xl transition-all"
+                className="p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <AnimatePresence mode="wait">
-                  {theme === 'dark' ? (
+                  {theme === 'light' ? (
                     <motion.div
-                      key="sun"
+                      key="moon"
                       initial={{ rotate: -90, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Sun className="w-5 h-5" />
+                      <Moon className="w-5 h-5" />
                     </motion.div>
                   ) : (
                     <motion.div
-                      key="moon"
+                      key="sun"
                       initial={{ rotate: 90, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Moon className="w-5 h-5" />
+                      <Sun className="w-5 h-5" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -197,12 +181,12 @@ const Layout: React.FC = () => {
               <div className="relative">
                 <motion.button
                   onClick={() => setShowProfile(!showProfile)}
-                  className="flex items-center gap-2 p-2 text-gray-400 hover:bg-gray-800/40 hover:text-white rounded-xl transition-all"
+                  className="flex items-center gap-2 p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-all"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                    <User className="w-4 h-4 text-white" />
+                  <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                    <User className="w-4 h-4 text-gray-600" />
                   </div>
                 </motion.button>
 
@@ -212,49 +196,42 @@ const Layout: React.FC = () => {
                       initial={{ opacity: 0, scale: 0.95, y: -10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                      className="absolute right-0 mt-2 w-72 bg-black/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-800 py-2 z-50"
+                      className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50"
                     >
-                      <div className="px-4 py-3 border-b border-gray-800">
+                      <div className="px-4 py-3 border-b border-gray-100">
                         <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                            <User className="w-6 h-6 text-white" />
+                          <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                            <User className="w-6 h-6 text-gray-600" />
                           </div>
                           <div>
-                            <p className="font-semibold text-white">Sales Manager</p>
-                            <p className="text-sm text-gray-400">manager@company.com</p>
+                            <p className="font-semibold text-gray-900">Sales Manager</p>
+                            <p className="text-sm text-gray-500">manager@company.com</p>
                           </div>
                         </div>
                       </div>
                       
                       <div className="py-2">
                         <motion.button 
-                          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-300 hover:bg-gray-800/50 transition-colors"
+                          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                           whileHover={{ x: 4 }}
                         >
                           <Settings className="w-4 h-4" />
                           Settings
                         </motion.button>
                         <motion.button 
-                          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-300 hover:bg-gray-800/50 transition-colors"
+                          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                           whileHover={{ x: 4 }}
                         >
                           <HelpCircle className="w-4 h-4" />
                           Help & Support
                         </motion.button>
                         <motion.button 
-                          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-400 hover:bg-red-900/20 transition-colors"
+                          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                           whileHover={{ x: 4 }}
                         >
                           <LogOut className="w-4 h-4" />
                           Sign Out
                         </motion.button>
-                      </div>
-
-                      <div className="px-4 py-3 border-t border-gray-800">
-                        <div className="flex items-center gap-2 text-xs text-gray-400">
-                          <Sparkles className="w-3 h-3" />
-                          <span className="italic">"Switch to light mode only if you're feeling sunny." - Tessa</span>
-                        </div>
                       </div>
                     </motion.div>
                   )}
@@ -277,7 +254,7 @@ const Layout: React.FC = () => {
       <TessaSidebar isOpen={showTessaSidebar} onClose={() => setShowTessaSidebar(false)} />
 
       {/* Mobile Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-xl border-t border-gray-800 z-40">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40">
         <div className="flex items-center justify-around py-2">
           {navigation.map((item) => {
             const Icon = item.icon;
@@ -291,8 +268,8 @@ const Layout: React.FC = () => {
                 <motion.div
                   className={`flex flex-col items-center gap-1 p-3 rounded-xl transition-all ${
                     isActive
-                      ? 'text-blue-400'
-                      : 'text-gray-400'
+                      ? 'text-black'
+                      : 'text-gray-500'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -302,7 +279,7 @@ const Layout: React.FC = () => {
                 </motion.div>
                 {isActive && (
                   <motion.div
-                    className="absolute top-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-500 rounded-full"
+                    className="absolute top-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-black rounded-full"
                     layoutId="activeMobileTab"
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   />

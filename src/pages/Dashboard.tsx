@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="p-6 pb-20 md:pb-6 space-y-8">
+    <div className="p-6 pb-20 md:pb-6 space-y-8 bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div 
@@ -87,23 +87,36 @@ const Dashboard: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent mb-2">
-            Sales Audit Dashboard
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Dashboard
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
-            Monitor your team's performance with AI-powered insights
+          <p className="text-gray-600">
+            Monitor your sales audit performance and insights
           </p>
         </motion.div>
 
         {/* Tessa's Insight */}
-        <TessaInsightBubble type="success">
-          <strong>🔥 Today's Hot Take:</strong> Your team's performance is absolutely crushing it! 
-          Arjun's leading with a stellar 94% score, and overall flag rates dropped 15% this week. 
-          The momentum is real - keep this energy going! 
-          <div className="mt-2 text-xs opacity-75">
-            <em>Pro tip: Sarah's enterprise calls are getting smoother. That coaching session paid off! 📈</em>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8"
+        >
+          <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <CheckCircle className="w-4 h-4 text-white" />
+              </div>
+              <div className="text-sm text-green-800">
+                <strong>Performance metrics look good today.</strong> Your team's performance is absolutely crushing it! 
+                Arjun's leading with a stellar 94% score, and overall flag rates dropped 15% this week. 
+                The momentum is real - keep this energy going!
+                <div className="mt-2 text-xs text-green-700">
+                  <em>- Tessa AI</em>
+                </div>
+              </div>
+            </div>
           </div>
-        </TessaInsightBubble>
+        </motion.div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -114,8 +127,8 @@ const Dashboard: React.FC = () => {
           >
             <StatCard
               title="Total Audits"
-              value={<AnimatedCounter end={1247} />}
-              subtitle="+12% from last month"
+              value={<AnimatedCounter end={1234} />}
+              subtitle="+12% from last week"
               icon={<Search className="w-6 h-6 text-white" />}
               trend="up"
               trendValue="+12%"
@@ -130,8 +143,8 @@ const Dashboard: React.FC = () => {
           >
             <StatCard
               title="Hours Audited"
-              value={<><AnimatedCounter end={892} />h</>}
-              subtitle="Lightning fast ⚡"
+              value={<><AnimatedCounter end={2456} />h</>}
+              subtitle="+8% from last week"
               icon={<Clock className="w-6 h-6 text-white" />}
               color="success"
             />
@@ -144,8 +157,8 @@ const Dashboard: React.FC = () => {
           >
             <StatCard
               title="Flags Raised"
-              value={<AnimatedCounter end={89} />}
-              subtitle="-15% this week 📉"
+              value={<AnimatedCounter end={187} />}
+              subtitle="-15% from last week"
               icon={<Flag className="w-6 h-6 text-white" />}
               trend="down"
               trendValue="-15%"
@@ -159,10 +172,10 @@ const Dashboard: React.FC = () => {
             transition={{ delay: 0.4 }}
           >
             <StatCard
-              title="Longest Call"
-              value="3h 47m"
-              subtitle="That's dedication! 💪"
-              icon={<Award className="w-6 h-6 text-white" />}
+              title="Active Reps"
+              value={<AnimatedCounter end={89} />}
+              subtitle="+5% from last week"
+              icon={<Users className="w-6 h-6 text-white" />}
               color="accent"
             />
           </motion.div>
@@ -178,48 +191,41 @@ const Dashboard: React.FC = () => {
           >
             <GlassCard className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-gray-900">
                   Weekly Audit Volume
                 </h3>
-                <div className="flex items-center gap-2 text-sm text-success-600 dark:text-success-400">
+                <div className="flex items-center gap-2 text-sm text-green-600">
                   <TrendingUp className="w-4 h-4" />
                   <span>+8% vs last week</span>
                 </div>
               </div>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={weeklyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" opacity={0.3} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                   <XAxis dataKey="name" stroke="#6B7280" fontSize={12} />
                   <YAxis stroke="#6B7280" fontSize={12} />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: 'rgba(255, 255, 255, 0.95)', 
-                      border: 'none', 
-                      borderRadius: '12px',
-                      boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-                      backdropFilter: 'blur(8px)'
+                      backgroundColor: 'white', 
+                      border: '1px solid #E5E7EB', 
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
                     }} 
                   />
                   <Line 
                     type="monotone" 
                     dataKey="audits" 
-                    stroke="url(#auditGradient)" 
-                    strokeWidth={3}
-                    dot={{ fill: '#0EA5E9', strokeWidth: 2, r: 5 }}
-                    activeDot={{ r: 7, stroke: '#0EA5E9', strokeWidth: 2 }}
+                    stroke="#0EA5E9" 
+                    strokeWidth={2}
+                    dot={{ fill: '#0EA5E9', strokeWidth: 2, r: 4 }}
+                    activeDot={{ r: 6, stroke: '#0EA5E9', strokeWidth: 2 }}
                   />
-                  <defs>
-                    <linearGradient id="auditGradient" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="#0EA5E9" />
-                      <stop offset="100%" stopColor="#D946EF" />
-                    </linearGradient>
-                  </defs>
                 </LineChart>
               </ResponsiveContainer>
             </GlassCard>
           </motion.div>
 
-          {/* Flag Distribution */}
+          {/* Issue Distribution */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -227,10 +233,10 @@ const Dashboard: React.FC = () => {
           >
             <GlassCard className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Common Issues
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Issue Distribution
                 </h3>
-                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Target className="w-4 h-4" />
                   <span>Focus Areas</span>
                 </div>
@@ -254,11 +260,10 @@ const Dashboard: React.FC = () => {
                   </Pie>
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: 'rgba(255, 255, 255, 0.95)', 
-                      border: 'none', 
-                      borderRadius: '12px',
-                      boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-                      backdropFilter: 'blur(8px)'
+                      backgroundColor: 'white', 
+                      border: '1px solid #E5E7EB', 
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
                     }} 
                   />
                 </PieChart>
@@ -275,10 +280,10 @@ const Dashboard: React.FC = () => {
         >
           <GlassCard className="p-6">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-lg font-semibold text-gray-900">
                 🏆 Top Performers This Month
               </h3>
-              <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Users className="w-4 h-4" />
                 <span>Sales Team Leaderboard</span>
               </div>
@@ -291,15 +296,15 @@ const Dashboard: React.FC = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.8 + index * 0.1 }}
-                  className="flex items-center justify-between p-4 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl hover:bg-white/60 dark:hover:bg-gray-800/60 transition-all duration-300 group"
+                  className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-4">
                     <div className="relative">
-                      <div className={`flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-sm shadow-lg ${
+                      <div className={`flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-sm shadow-sm ${
                         index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' :
                         index === 1 ? 'bg-gradient-to-br from-gray-400 to-gray-600' :
                         index === 2 ? 'bg-gradient-to-br from-orange-400 to-orange-600' :
-                        'bg-gradient-to-br from-primary-500 to-accent-500'
+                        'bg-gradient-to-br from-blue-500 to-purple-500'
                       }`}>
                         {index < 3 ? (
                           <Star className="w-6 h-6" />
@@ -315,25 +320,25 @@ const Dashboard: React.FC = () => {
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <p className="font-semibold text-gray-900 dark:text-white">{rep.name}</p>
-                        {rep.trend === 'up' && <TrendingUp className="w-4 h-4 text-success-500" />}
+                        <p className="font-semibold text-gray-900">{rep.name}</p>
+                        {rep.trend === 'up' && <TrendingUp className="w-4 h-4 text-green-500" />}
                         {rep.trend === 'down' && <TrendingUp className="w-4 h-4 text-red-500 rotate-180" />}
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-gray-600">
                         {rep.calls} calls • {rep.flags} flags
                       </p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">{rep.score}%</p>
-                    <div className="w-20 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mt-1">
+                    <p className="text-2xl font-bold text-gray-900">{rep.score}%</p>
+                    <div className="w-20 h-2 bg-gray-200 rounded-full overflow-hidden mt-1">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${rep.score}%` }}
                         transition={{ delay: 1 + index * 0.1, duration: 1, ease: "easeOut" }}
                         className={`h-full ${
-                          rep.score >= 90 ? 'bg-gradient-to-r from-success-500 to-success-600' :
-                          rep.score >= 80 ? 'bg-gradient-to-r from-primary-500 to-primary-600' :
+                          rep.score >= 90 ? 'bg-gradient-to-r from-green-500 to-green-600' :
+                          rep.score >= 80 ? 'bg-gradient-to-r from-blue-500 to-blue-600' :
                           'bg-gradient-to-r from-yellow-500 to-orange-500'
                         }`}
                       />
@@ -342,27 +347,6 @@ const Dashboard: React.FC = () => {
                 </motion.div>
               ))}
             </div>
-
-            {/* Tessa's Commentary */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
-              className="mt-6 p-4 bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-2xl border border-primary-200/50 dark:border-primary-800/50"
-            >
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Coffee className="w-4 h-4 text-white" />
-                </div>
-                <div className="text-sm text-gray-700 dark:text-gray-300">
-                  <strong>Tessa's Take:</strong> Arjun's on fire this month! 🔥 That 94% score isn't luck - 
-                  it's pure skill. Sarah's climbing fast too. Mike and Lisa, let's chat about those closing techniques! 
-                  <span className="italic opacity-75 block mt-1">
-                    Remember: Every flag is a learning opportunity, not a failure ✨
-                  </span>
-                </div>
-              </div>
-            </motion.div>
           </GlassCard>
         </motion.div>
       </div>
