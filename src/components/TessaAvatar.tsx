@@ -394,7 +394,7 @@ export const TessaSidebar: React.FC<{ isOpen: boolean; onClose: () => void }> = 
                       className="text-sm text-gray-300 p-2 bg-gray-800/50 rounded-lg"
                     >
                       {insight}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
