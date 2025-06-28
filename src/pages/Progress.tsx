@@ -15,7 +15,7 @@ import {
   FileVideo,
   Eye
 } from 'lucide-react';
-import { TessaInsightBubble } from '../components/TessaAvatar';
+import { TessaMessage } from '../components/Tessa';
 
 interface AuditJob {
   id: string;
@@ -183,11 +183,11 @@ const Progress: React.FC = () => {
         </div>
 
         {/* Tessa's Insight */}
-        <TessaInsightBubble>
+        <TessaMessage>
           <strong>Processing Status Update:</strong> I'm currently working on 2 calls and just finished analyzing 
           Mike's follow-up. That enterprise demo is a marathon - grab some coffee! ☕ 
           <em className="block mt-1 text-xs opacity-75">ETA updates are my best guess, but I'm pretty good at this! 😏</em>
-        </TessaInsightBubble>
+        </TessaMessage>
 
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">

@@ -19,7 +19,7 @@ import {
   TrendingUp,
   MessageSquare
 } from 'lucide-react';
-import { TessaInsightBubble } from '../components/TessaAvatar';
+import { TessaMessage } from '../components/Tessa';
 
 interface Report {
   id: string;
@@ -179,14 +179,14 @@ const Reports: React.FC = () => {
         </div>
 
         {/* Tessa's Monthly Recap */}
-        <TessaInsightBubble>
+        <TessaMessage>
           <strong>January Recap:</strong> 168 audits completed, 19% flagged for review. 
           Top performer: Mike Wilson with a stellar 94% average! 🌟 
           Sarah's enterprise call needs some love - 5 flags detected. Let\'s get that sorted! 
           <div className="mt-2 text-xs opacity-75">
             <em>Pro tip: Check the "Flagged" filter to prioritize your coaching sessions 📚</em>
           </div>
-        </TessaInsightBubble>
+        </TessaMessage>
 
         {/* Summary Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">

@@ -20,12 +20,12 @@ export const GlassCard: React.FC<GlassCardProps> = ({
     <motion.div
       className={`
         ${gradient 
-          ? 'bg-gradient-to-br from-gray-900/40 to-black/20' 
-          : 'bg-gray-900/80'
+          ? 'bg-gradient-to-br from-white/20 to-white/10 dark:from-gray-800/40 dark:to-gray-900/20' 
+          : 'bg-white/80 dark:bg-gray-800/80'
         }
-        backdrop-blur-xl border border-gray-800 
-        rounded-2xl shadow-2xl
-        ${hover ? 'hover:shadow-3xl hover:scale-[1.02] transition-all duration-300' : ''}
+        backdrop-blur-xl border border-white/20 dark:border-gray-700/50 
+        rounded-2xl shadow-glass dark:shadow-glass-dark
+        ${hover ? 'hover:shadow-xl hover:scale-[1.02] transition-all duration-300' : ''}
         ${onClick ? 'cursor-pointer' : ''}
         ${className}
       `}
@@ -59,16 +59,16 @@ export const StatCard: React.FC<{
   color = 'primary'
 }) => {
   const colorClasses = {
-    primary: 'from-blue-500 to-blue-600',
-    success: 'from-green-500 to-green-600',
+    primary: 'from-primary-500 to-primary-600',
+    success: 'from-success-500 to-success-600',
     warning: 'from-yellow-500 to-orange-500',
-    accent: 'from-purple-500 to-purple-600'
+    accent: 'from-accent-500 to-accent-600'
   };
 
   const trendColors = {
-    up: 'text-green-400',
-    down: 'text-red-400',
-    neutral: 'text-gray-400'
+    up: 'text-success-600 dark:text-success-400',
+    down: 'text-red-600 dark:text-red-400',
+    neutral: 'text-gray-600 dark:text-gray-400'
   };
 
   return (
@@ -86,16 +86,16 @@ export const StatCard: React.FC<{
       
       <div className="space-y-1">
         <motion.p 
-          className="text-3xl font-bold text-white"
+          className="text-3xl font-bold text-gray-900 dark:text-white"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
         >
           {value}
         </motion.p>
-        <p className="text-sm font-medium text-gray-300">{title}</p>
+        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{title}</p>
         {subtitle && (
-          <p className="text-xs text-gray-400">{subtitle}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">{subtitle}</p>
         )}
       </div>
     </GlassCard>

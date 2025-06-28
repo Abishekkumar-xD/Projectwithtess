@@ -47,13 +47,10 @@ export default {
           900: '#14532D',
           950: '#052E16',
         },
-        // Black theme colors
-        black: '#000000',
-        'gray-950': '#0a0a0a',
-        'gray-900': '#111111',
-        'gray-800': '#1a1a1a',
-        'gray-700': '#2a2a2a',
-        'gray-600': '#3a3a3a',
+        glass: {
+          light: 'rgba(255, 255, 255, 0.25)',
+          dark: 'rgba(0, 0, 0, 0.25)',
+        },
       },
       backdropBlur: {
         xs: '2px',
@@ -100,8 +97,8 @@ export default {
           '50%': { transform: 'translateY(-6px)' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 5px rgba(59, 130, 246, 0.5)' },
-          '100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.8)' },
+          '0%': { boxShadow: '0 0 5px rgba(14, 165, 233, 0.5)' },
+          '100%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.8)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },
@@ -118,8 +115,6 @@ export default {
         'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
         'soft-dark': '0 2px 15px -3px rgba(0, 0, 0, 0.3), 0 10px 20px -2px rgba(0, 0, 0, 0.2)',
-        '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-        '3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.3)',
       },
     },
   },
